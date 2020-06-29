@@ -1,0 +1,105 @@
+.media{
+    height: 15rem;
+    background-color: white;
+}
+
+.MuiPaperRounded{
+    border-radius: 15px !important;
+}
+
+.Link{
+    text-decoration: none;
+    color: white;
+}
+.cardTitle{
+    text-transform: uppercase;
+}
+.root1{
+    width: 21rem;
+    border-radius: 50px;
+    margin: 0 auto;
+    margin-top: 8rem;
+    margin-bottom: 20px;
+}
+
+.root1::before{
+    content: "Tomorrow";
+    display: block;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.root2{
+    width: 21rem;
+    border-radius: 50px;
+    margin: 0 auto;
+    margin-top: 8rem;
+    margin-bottom: 20px;
+}
+
+.root2::before{
+    content: "Overmorrow";
+    display: block;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.root3{
+    width: 21rem;
+    border-radius: 50px;
+    margin: 0 auto;
+    margin-top: 8rem;
+    margin-bottom: 20px;
+}
+
+.root3::before{
+    content: "2 Days Later";
+    display: block;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.root4{
+    width: 21rem;
+    border-radius: 50px;
+    margin: 0 auto;
+    margin-top: 8rem;
+    margin-bottom: 20px;
+}
+
+.root4::before{
+    content: "3 days later";
+    display: block;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.root5{
+    width: 21rem;
+    border-radius: 50px;
+    margin: 0 auto;
+    margin-top: 8rem;
+    margin-bottom: 20px;
+}
+
+.root5::before{
+    content: "4 days later";
+    display: block;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 2rem;
+}

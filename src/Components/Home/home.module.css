@@ -1,0 +1,15 @@
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+
+.hidden{
+    display: none;
+}
+
+.wait{
+    margin-top: 3rem;
+    text-transform: uppercase;
+}

@@ -1,0 +1,24 @@
+.individualCard{
+    width: 21rem;
+    border-radius: 50px;
+    margin: 0 auto;
+    margin-top: 3rem;
+    margin-bottom: 20px;
+}
+
+.day{
+    display: block;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.chart{
+    width: 90vw;
+    margin: 0 auto;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    border-radius: 50px;
+}
