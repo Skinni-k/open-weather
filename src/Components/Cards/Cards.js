@@ -14,7 +14,7 @@ const Cards = (props) => {
     const [daySunrise, dateSunrise, timeSunrise] = sunrise;
     const [daySunset, dateSunset, timeSunset] = sunset;
     const days = [
-        {when: "Today"},
+        {when: "Today."},
         {when: "Tomorrow", style: styles.root1},
         {when: "overmorrow", style: styles.root2},
         {when: "Two days later", style: styles.root3},
