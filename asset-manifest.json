@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/open-weather/static/css/main.fdb22a90.chunk.css",
+    "main.js": "/open-weather/static/js/main.c78aac94.chunk.js",
+    "main.js.map": "/open-weather/static/js/main.c78aac94.chunk.js.map",
+    "runtime-main.js": "/open-weather/static/js/runtime-main.f6c7a3f9.js",
+    "runtime-main.js.map": "/open-weather/static/js/runtime-main.f6c7a3f9.js.map",
+    "static/js/2.7034cf61.chunk.js": "/open-weather/static/js/2.7034cf61.chunk.js",
+    "static/js/2.7034cf61.chunk.js.map": "/open-weather/static/js/2.7034cf61.chunk.js.map",
+    "index.html": "/open-weather/index.html",
+    "precache-manifest.1cbaa6f25a25f7fca7fa70955207b6dd.js": "/open-weather/precache-manifest.1cbaa6f25a25f7fca7fa70955207b6dd.js",
+    "service-worker.js": "/open-weather/service-worker.js",
+    "static/css/main.fdb22a90.chunk.css.map": "/open-weather/static/css/main.fdb22a90.chunk.css.map",
+    "static/js/2.7034cf61.chunk.js.LICENSE.txt": "/open-weather/static/js/2.7034cf61.chunk.js.LICENSE.txt",
+    "static/media/cloudy.png": "/open-weather/static/media/cloudy.a1b3557a.png",
+    "static/media/sunny.png": "/open-weather/static/media/sunny.9e0e3133.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f6c7a3f9.js",
+    "static/js/2.7034cf61.chunk.js",
+    "static/css/main.fdb22a90.chunk.css",
+    "static/js/main.c78aac94.chunk.js"
+  ]
+}
