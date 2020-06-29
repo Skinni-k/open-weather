@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { HashRouter as Router, Route } from "react-router-dom";
 import Header from './Components/Header/Header';
 import Home from './Components/Home/Home';
 import IndividualDay from './Components/Each Day/IndividualDay';
