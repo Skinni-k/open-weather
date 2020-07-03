@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d18e7d412e59c5401de5b5979e155e15",
+    "revision": "6478376a5d6dff5961f524fc6555a052",
     "url": "/open-weather/index.html"
   },
   {
-    "revision": "9c0fae630d9da8311d23",
-    "url": "/open-weather/static/css/main.fdb22a90.chunk.css"
+    "revision": "fe5370c7f7222084f94d",
+    "url": "/open-weather/static/css/main.da9ddcc1.chunk.css"
   },
   {
-    "revision": "f6fe161f27aa1fe598bc",
-    "url": "/open-weather/static/js/2.7034cf61.chunk.js"
+    "revision": "ed4dfe05a97e855fe5f3",
+    "url": "/open-weather/static/js/2.4f4d976c.chunk.js"
   },
   {
-    "revision": "0749163b59fbee32225059cb60c18af6",
-    "url": "/open-weather/static/js/2.7034cf61.chunk.js.LICENSE.txt"
+    "revision": "c9dd85361cb9cef9841c7e9bd1147de5",
+    "url": "/open-weather/static/js/2.4f4d976c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "9c0fae630d9da8311d23",
-    "url": "/open-weather/static/js/main.c78aac94.chunk.js"
+    "revision": "fe5370c7f7222084f94d",
+    "url": "/open-weather/static/js/main.bc3036de.chunk.js"
   },
   {
     "revision": "d8240cad61a6b40bd64e",
