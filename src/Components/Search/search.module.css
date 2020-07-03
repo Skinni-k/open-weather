@@ -13,6 +13,14 @@
     border: 3px solid #000;
 }
 
+.searchBar2{
+    width: 35rem;
+    border-radius: 10px;
+    /* border: 3px solid #000; */
+    /* margin: 10px auto; */
+    background-color: white;
+}
+
 .select{
     min-height: 3.5rem;
     margin-left: 20px;

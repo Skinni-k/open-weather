@@ -3,55 +3,52 @@ import axios from "axios";
 import styles from "./home.module.css";
 import Cards from '../Cards/Cards';
 import Search from '../Search/Search';
+import { debounce } from "lodash";
 
 
 const Home = () => {
     const [value, setValue] = useState("");
-    const [inputValue, setInputValue] = useState("");
-    const [country, setCountry] = useState("");
+    const [placeList, setPlaceList] = useState([]);
+    const [dailyData, setDailyData] = useState([]);
     const [longitude, setLongitude] = useState("");
     const [latitude, setLatitude] = useState("");
     const [showCards, setShowCards] = useState(false);
-    const [isBoxVisible, setIsBoxVisible] = useState(false);
-    const [dailyData, setDailyData] = useState([]);
     const firstUpdate = useRef(true);
-    const api_key_cordi = "cd95049f63651ccdec53d505fbb2a9f8";
+    const api_key_cordi = "b600f7b8e65061&q";
     const api_key_weather = "0c696ec6fa2c35f0d62d8c3423ffdf67";
     const numberOfCards = [1,2,3,4,5];
     const suffix = "000";
 
-    //// FUNTION TO STORE THE PLACE VALUE
+    //// FUNTION TO call getCordinates only when length is above 3 THE PLACE VALUE
     const onValueChange = (e) => {
-        setValue(e.target.value)
-    }
-    
-    // FUNTION TO STORE THE SELECTED COUNTRY VALUE
-    const countryHandler = (e) =>{
-        const country = e.target.value
-        setCountry(country)
+        if(e.target.value.length > 3){
+            getCordinates(e.target.value)
+        }
     }
 
-    // FUNCTION TO RUN ON SUBMIT
-    const onSubmitHandler = (e) =>{
-        setInputValue(value);
-        setIsBoxVisible(true);
-        e.preventDefault();
-        getCordinates();
-    }
-    
     // TO GET CORDINATES USING THE INPUT VALUE
-    const getCordinates = async () => {
-        axios.get(`http://api.positionstack.com/v1/forward?access_key=${api_key_cordi}&query=${value}&country=${country}&limit=1`)
-        .then((response) => {
-            if(response.data.data.length === 0){
-                window.alert("Location name or Country incorrect")
-            }else{
-                setLongitude(response?.data.data[0].longitude);
-                setLatitude(response?.data.data[0].latitude);
-                
-            }
-        });
-    };
+    const getCordinates = debounce( async (place) => {
+
+        axios.get(`https://api.locationiq.com/v1/autocomplete.php?key=${api_key_cordi}&q=${place}`)
+        .then((response)=> {
+            setPlaceList(response.data);
+        })
+        .catch((e)=>{
+            window.alert("ENTER CORRECT LOCATION")
+        })
+    },400);
+
+    // WHEN PLACE IS SELETECTED, SET STATE AND CALL WEATHER API
+    const onPlaceSelect = (e, value) => {
+        if(value !== null){
+            setLongitude(value.lon);
+            setLatitude(value.lat);
+            setValue(value.display_place);
+        }else{
+            setShowCards(false);
+            console.log("HERE")
+        }
+    }
     
     // USELAYOUTEFFECT FOR NOT MAKING IT RUN ON RENDER BUT ONLY WHEN LONGITUDE AND LATITUDE IS SET, AND THEN CALL getWeather
     useLayoutEffect(() => {
@@ -64,70 +61,65 @@ const Home = () => {
 
     // GETTING WEATHER DATA USING THE LONGITUDE AND LATITUDE GOTTEN FROM PREVIOUS RESPONSE
     const getWeather = async () => {
-        await axios.get(
+        axios.get(
         `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=metric&appid=${api_key_weather}`
         )
         .then((response) => {
-                setIsBoxVisible(false);
                 setDailyData(response.data.daily);
-                setShowCards(true);
         });
     }
 
-    // THE DATE AND TIME FORMAT GOTTEN IN RESPONSE IS IN EPOCH TIME, SO BELOW TWO FUNCTIONS CONVERT IT 
-    const epochConvertSunrise = ( sunrise ) => {
-        const epochDateSunrise = sunrise;
-        const currentEpochDateTimeSunrise = epochDateSunrise+suffix;
-        const ans = new Date(parseInt(currentEpochDateTimeSunrise));
-        const daySunrise = ans.toString().substring(0, 3);
-        const dateSunrise = ans.toString().substring(4, 15);
-        const timeSunrise = ans.toString().substring(16, 24);
-        const values = [ daySunrise, dateSunrise, timeSunrise ]
-        return values;
+    // FUNCTION TO RUN ON SUBMIT
+    const onSubmitHandler = (e) =>{
+        e.preventDefault();
+        if(longitude.length > 0 && longitude.length > 0){
+            setShowCards(true);
+        }else{
+            window.alert("Please Select location from dropdown")
+        }
     }
 
-    const epochConvertSunset = ( sunset ) => {
-        const epochDateSunset = sunset;
-        const currentEpochDateTimeSunset = epochDateSunset+suffix;
-        const ans = new Date(parseInt(currentEpochDateTimeSunset));
-        const daySunset = ans.toString().substring(0, 3);
-        const dateSunset = ans.toString().substring(4, 15);
-        const timeSunset = ans.toString().substring(16, 24);
-        const values = [ daySunset, dateSunset, timeSunset ]
+    // THE DATE AND TIME FORMAT GOTTEN IN RESPONSE IS IN EPOCH TIME, SO BELOW TWO FUNCTIONS CONVERT IT 
+    const epochConvertion = ( timeframe ) => {
+        const epochDate = timeframe;
+        const currentEpochDateTime = epochDate+suffix;
+        const ans = new Date(parseInt(currentEpochDateTime));
+        const day = ans.toString().substring(0, 3);
+        const date = ans.toString().substring(4, 15);
+        const time = ans.toString().substring(16, 24);
+        const values = [ day, date, time ]
         return values;
     }
 
     return (
         <div>
             <Search
-            value={value}
             onValueChange={onValueChange}
-            countryHandler={countryHandler}
+            placeList={placeList}
+            onPlaceSelect={onPlaceSelect}
             onSubmitHandler={onSubmitHandler}
             />
             <div className={styles.cards}>
             {showCards ?
                 numberOfCards.map(card => {
-                    return( 
-
+                    return(
                         <Cards
                             key={card}
                             indexValue={card}
                             cardList={true}
-                            place={inputValue.toString()}
-                            longitude={longitude.toString()}
-                            latitude={latitude.toString()}
-                            weather={dailyData[card].weather[0].main.toString()}
-                            humidity={dailyData[card].humidity.toString()}
-                            lowTemp={dailyData[card].temp.min.toString()}
-                            highTemp={dailyData[card].temp.max.toString()}
-                            sunrise={epochConvertSunrise(dailyData[card].sunrise)}
-                            sunset={epochConvertSunset(dailyData[card].sunset)}
+                            place={value?.toString()}
+                            longitude={longitude?.toString()}
+                            latitude={latitude?.toString()}
+                            weather={dailyData[card]?.weather[0]?.main?.toString()}
+                            humidity={dailyData[card]?.humidity?.toString()}
+                            lowTemp={dailyData[card]?.temp?.min?.toString()}
+                            highTemp={dailyData[card]?.temp?.max?.toString()}
+                            sunrise={epochConvertion(dailyData[card]?.sunrise)}
+                            sunset={epochConvertion(dailyData[card]?.sunset)}
                         />
                     )
                 }) 
-                
-                : <h1 className={`${isBoxVisible ? styles.wait : styles.hidden}`}> Please Wait... </h1>}
+                : <></>}
             </div>
             
         </div>

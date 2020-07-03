@@ -24,7 +24,7 @@ const Cards = (props) => {
     return (
         <div>
             {cardList ?
-                <Link key={days.indexValue} className={styles.Link} exact
+                <Link key={days.indexValue} className={styles.Link} exact="true"
                     to={{
                         pathname: `/id=${indexValue}`,
                         state: {place, longitude, latitude, weather, humidity, lowTemp, highTemp, sunrise, sunset }

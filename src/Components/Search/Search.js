@@ -1,18 +1,55 @@
-import React from 'react'
-import { countryListAllData } from "../CountryList";
+import React from 'react';
+import TextField from '@material-ui/core/TextField';
+import { Autocomplete } from '@material-ui/lab';
 import styles from "./search.module.css"
+import { StylesProvider } from '@material-ui/core';
+import { withStyles } from "@material-ui/core/styles";
 
 const Search = (props) => {
-    const { value, onValueChange, countryHandler, onSubmitHandler } = props;
+    const { onValueChange, onSubmitHandler, placeList, onPlaceSelect } = props;
+
+    const CssTextField = withStyles({
+        root: {
+          "& label.Mui-focused": {
+            color: "#000",
+            fontSize: "20px",
+            fontWeight: "bold",
+          },
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+                border: "3px solid #000",
+                borderRadius: "10px",
+            },
+            "&.Mui-focused fieldset": {
+                border: "3px solid #FFF",
+              borderColor: "white"
+            }
+          }
+        }
+      })(TextField);
+
     return (
-        <form className={styles.form} onSubmit={onSubmitHandler}>
-            <input required value={value} onChange={onValueChange} className={styles.searchBar} type="text" placeholder="Enter Location" />
-            <select id="country-select" required name="pets" className={styles.select} onChange={countryHandler}>
-                <option disabled selected className={styles.option}>--PLEASE CHOOSE THE COUNTRY--</option>
-                {countryListAllData.map(country => <option key={country.code} value={country.code} className={styles.option}>{country.name}</option>)}
-            </select>
-            <button className={styles.submitButton}>SEARCH</button>
-        </form>
+        <StylesProvider injectFirst>
+        <div>
+            <form className={styles.form} onSubmit={onSubmitHandler}>
+                <Autocomplete className={styles.searchBar2} id="free-solo-demo" freeSolo
+                options={placeList}
+                getOptionLabel={(option) => option.display_name}
+                onChange={onPlaceSelect} 
+                renderInput={params => (
+                    <CssTextField
+                    {...params}
+                    onChange={onValueChange} 
+                    label="Enter Location" variant="outlined" id="custom-css-outlined-input" required
+                    />
+                )}
+                />
+                <button className={styles.submitButton}>SEARCH</button>
+            </form>
+            <div>
+            </div>
+        </div>
+        </StylesProvider>
     )
 }
 
