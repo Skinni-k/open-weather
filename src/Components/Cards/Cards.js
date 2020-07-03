@@ -7,8 +7,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import styles from "./card.module.css";
 
-
-
 const Cards = (props) => {
     const { indexValue, cardList, place, longitude, latitude, weather, humidity, lowTemp, highTemp, sunrise, sunset } = props;
     const [daySunrise, dateSunrise, timeSunrise] = sunrise;
@@ -61,13 +59,29 @@ const Cards = (props) => {
 
 const IndividualCard = ( props ) => {
     const { place, longitude, latitude, weather, humidity, lowTemp, highTemp, sunrise, sunset } = props;
-
+    
+    const checkWeather = (weather) => {
+        const Rainy = "https://www.theharlemvalleynews.net/wp-content/uploads/2015/03/rain_showers.png"
+        const Snow = "https://freesvg.org/img/sivvus_weather_symbols_5.png"
+        const Sunny = "https://png.vector.me/files/images/1/6/166202/symbols_weather_clear_sunny.jpg"
+        const Cloudy = "https://www.clipartkey.com/mpngs/m/19-197515_showing-post-media-for-cool-and-cloudy-weather.png"
+        if(weather === "Rain"){
+            return Rainy
+        }else if(weather === "Snow"){
+            return Snow
+        }else if(weather === "Sunny"){
+            return Sunny
+        }else if(weather === "Cloudy"){
+            return Cloudy
+        }
+    }
+    
     return (
             <Card className={` ${styles.MuiPaperRounded} `}>
                 <CardActionArea>
                     <CardMedia
                     className={styles.media}
-                    image={require (`../../Images/${weather}.png`)}
+                    image={checkWeather(weather)}
                     title="Weather"
                     />
                     <CardContent>
