@@ -22,7 +22,7 @@ const Chart = (props) => {
         },
         yAxis: {
             title: {
-                text: 'Temprature',
+                text: 'Temperature',
                 style: {
                     color: '#FFF'
                 }
@@ -64,13 +64,13 @@ const Chart = (props) => {
             }
         },
         series: [{
-            name: 'Low Temprature',
+            name: 'Low Temperature',
             data: lowTemp
         },{
-            name: 'Avg. Temprature',
+            name: 'Avg. Temperature',
             data: avgTemp
         }, {
-            name: 'High Temprature',
+            name: 'High Temperature',
             data: highTemp
         }],
       }

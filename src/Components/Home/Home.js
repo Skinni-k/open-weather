@@ -27,7 +27,7 @@ const Home = () => {
     }
 
     // TO GET CORDINATES USING THE INPUT VALUE
-    const getCordinates = debounce( async (place) => {
+    const getCordinates = debounce(place => {
 
         axios.get(`https://api.locationiq.com/v1/autocomplete.php?key=${api_key_cordi}&q=${place}`)
         .then((response)=> {
@@ -46,7 +46,6 @@ const Home = () => {
             setValue(value.display_place);
         }else{
             setShowCards(false);
-            console.log("HERE")
         }
     }
     

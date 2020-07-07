@@ -63,16 +63,16 @@ const IndividualCard = ( props ) => {
     const checkWeather = (weather) => {
         const Rainy = "https://www.theharlemvalleynews.net/wp-content/uploads/2015/03/rain_showers.png"
         const Snow = "https://freesvg.org/img/sivvus_weather_symbols_5.png"
-        const Sunny = "https://png.vector.me/files/images/1/6/166202/symbols_weather_clear_sunny.jpg"
-        const Cloudy = "https://www.clipartkey.com/mpngs/m/19-197515_showing-post-media-for-cool-and-cloudy-weather.png"
+        const Clear = "https://png.vector.me/files/images/1/6/166202/symbols_weather_clear_sunny.jpg"
+        const Clouds = "https://www.clipartkey.com/mpngs/m/19-197515_showing-post-media-for-cool-and-cloudy-weather.png"
         if(weather === "Rain"){
             return Rainy
         }else if(weather === "Snow"){
             return Snow
-        }else if(weather === "Sunny"){
-            return Sunny
-        }else if(weather === "Cloudy"){
-            return Cloudy
+        }else if(weather === "Clear"){
+            return Clear
+        }else if(weather === "Clouds"){
+            return Clouds
         }
     }
     

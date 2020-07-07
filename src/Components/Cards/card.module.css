@@ -9,7 +9,7 @@
 
 .Link{
     text-decoration: none;
-    color: white;
+    color: #434343;
 }
 .cardTitle{
     text-transform: uppercase;
@@ -20,7 +20,14 @@
     margin: 0 auto;
     margin-top: 8rem;
     margin-bottom: 20px;
+    transition: transform 0.8s;
 }
+
+.root1:hover {
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    transform: scale(1.1); 
+  }
 
 .root1::before{
     content: "Tomorrow";
@@ -38,7 +45,14 @@
     margin: 0 auto;
     margin-top: 8rem;
     margin-bottom: 20px;
+    transition: transform 0.8s;
 }
+
+.root2:hover {
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    transform: scale(1.1); 
+  }
 
 .root2::before{
     content: "Overmorrow";
@@ -56,7 +70,14 @@
     margin: 0 auto;
     margin-top: 8rem;
     margin-bottom: 20px;
+    transition: transform 0.8s;
 }
+
+.root3:hover {
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    transform: scale(1.1); 
+  }
 
 .root3::before{
     content: "2 Days Later";
@@ -74,7 +95,14 @@
     margin: 0 auto;
     margin-top: 8rem;
     margin-bottom: 20px;
+    transition: transform 0.8s;
 }
+
+.root4:hover {
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    transform: scale(1.1); 
+  }
 
 .root4::before{
     content: "3 days later";
@@ -92,7 +120,14 @@
     margin: 0 auto;
     margin-top: 8rem;
     margin-bottom: 20px;
+    transition: transform 0.8s;
 }
+
+.root5:hover {
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    transform: scale(1.1); 
+  }
 
 .root5::before{
     content: "4 days later";

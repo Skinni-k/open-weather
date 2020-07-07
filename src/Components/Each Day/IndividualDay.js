@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styles from "./individualDay.module.css";
+import Error from "../Error/Error";
 import Cards from '../Cards/Cards';
 import axios from "axios";
 import Chart from '../Chart/Chart';
-import {useLocation} from "react-router";
+import { useLocation } from "react-router";
 
 const IndividualDay = () => {
     const [hourlyData, setHourlyData] = useState([]);
@@ -22,6 +23,7 @@ const IndividualDay = () => {
     const [highTempList, setHighTempList] = useState([]);
     const [hourlyTime, setHourlyTime] = useState([]);
     const [showGraph, setShowGraph] = useState(false);
+    const [showError, setShowError] = useState(false);
     const [graphData, setGraphData] = useState({});
     const location = useLocation();
     const api_key_weather = "0c696ec6fa2c35f0d62d8c3423ffdf67";
@@ -29,15 +31,19 @@ const IndividualDay = () => {
 
     // THIS useEffect RUNS ON RENDER TO SET THE STATES PASSED FROM THE CARD
     useEffect(()=>{
-        setPlace(location.state.place);
-        setLongitude(location.state.longitude);
-        setLatitude(location.state.latitude);
-        setWeather(location.state.weather);
-        setHumidity(location.state.humidity);
-        setLowTemp(location.state.lowTemp);
-        setHighTemp(location.state.highTemp);
-        setSunrise(location.state.sunrise);
-        setSunset(location.state.sunset);
+        if(location.state !== undefined){
+            setPlace(location.state.place);
+            setLongitude(location.state.longitude);
+            setLatitude(location.state.latitude);
+            setWeather(location.state.weather);
+            setHumidity(location.state.humidity);
+            setLowTemp(location.state.lowTemp);
+            setHighTemp(location.state.highTemp);
+            setSunrise(location.state.sunrise);
+            setSunset(location.state.sunset);
+        }else{
+            setShowError(true)
+        }
     },[]);
 
     // THE BELOW FUNCTION SHOULD ONLY RUN WHEN latitude HAS BEEN SET A VALUE, THAT IS WHY THE IF BLOCK
@@ -49,8 +55,8 @@ const IndividualDay = () => {
     },[latitude]);
 
     // THE BELOW FUNCTION GETS WEATHER DATA FOR NEXT 5 DAYS
-    const getWeatherHourly = async () => {
-        await axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${api_key_weather}`)
+    const getWeatherHourly = () => {
+        axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${api_key_weather}`)
         .then((response) => {
                 setHourlyData(response.data.list);
         });
@@ -119,29 +125,34 @@ const IndividualDay = () => {
 
     return (
         <>
-        {weather.length > 0 ? 
-            <div className={styles.individualCard}>
-                <p className={styles.day}>{`${sunrise[0]} - ${sunrise[1]}`}</p>
-                <Cards
-                cardList={false}
-                place={place}
-                longitude={longitude}
-                latitude={latitude}
-                weather={weather}
-                humidity={humidity}
-                lowTemp={lowTemp}
-                highTemp={highTemp}
-                sunrise={sunrise}
-                sunset={sunset}
-                />
-            </div>:
-            <></>
-        }
-            {showGraph && graphData.length > 0 ? 
-                <div className={styles.chart}>
-                    <Chart graphData={graphData}/>
-                </div>:
-                <></>
+            { showError ?
+                <Error /> : 
+                <>
+                    {weather.length > 0 ? 
+                        <div className={styles.individualCard}>
+                            <p className={styles.day}>{`${sunrise[0]} - ${sunrise[1]}`}</p>
+                            <Cards
+                            cardList={false}
+                            place={place}
+                            longitude={longitude}
+                            latitude={latitude}
+                            weather={weather}
+                            humidity={humidity}
+                            lowTemp={lowTemp}
+                            highTemp={highTemp}
+                            sunrise={sunrise}
+                            sunset={sunset}
+                            />
+                        </div>:
+                        <></>
+                    }
+                    {showGraph && graphData.length > 0 ? 
+                        <div className={styles.chart}>
+                            <Chart graphData={graphData}/>
+                        </div>:
+                        <></>
+                    }
+                </>
             }
         </>
     )
