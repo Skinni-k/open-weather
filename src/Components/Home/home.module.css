@@ -1,15 +1,35 @@
-.cards{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
-
-.hidden{
-    display: none;
+.hidden {
+  display: none;
 }
 
-.wait{
-    margin-top: 3rem;
-    text-transform: uppercase;
+.wait {
+  margin-top: 3rem;
+  text-transform: uppercase;
+}
+
+.credit {
+  position: fixed;
+  top: 97.2vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  background-color: #f4a7bf;
+  font-weight: bold;
+  height: 3rem;
+  width: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid black;
+}
+
+.credit a {
+  font-style: italic;
+  color: black;
 }

@@ -1,5 +1,5 @@
 .header{
-    background-color: rgba(67, 67, 67, 1);
+    background-color: #F4A7BF;
     font-size: 25px;
     text-transform: uppercase;
     height: 100px;
@@ -11,5 +11,5 @@
 
 .Link{
     text-decoration: none;
-    color: white;
+    color: black;
   }

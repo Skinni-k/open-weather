@@ -98,10 +98,10 @@ const IndividualCard = ( props ) => {
                             High Temp. - {highTemp}°C
                         </Typography>
                         <Typography component="p">
-                            {sunrise}
+                            Sunrise - {sunrise}
                         </Typography>
                         <Typography component="p">
-                            {sunset}
+                            Sunset - {sunset}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
